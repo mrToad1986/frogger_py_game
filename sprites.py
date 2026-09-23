@@ -15,3 +15,15 @@ class BaseSprite(pygame.sprite.Sprite):
 
     def update(self, dt):
         pass
+
+
+class MovingSprite(BaseSprite):
+    def __init__(self, image, pos, speed, type=EntityType.OTHER):
+        super().__init__(image, pos, type)
+        self.speed = speed
+        self.x = float(pos[0])
+        self.y = float(pos[1])
+
+    def update(self, dt):
+        self.x += self.speed * dt
+        self.rect.x = round(self.x)
